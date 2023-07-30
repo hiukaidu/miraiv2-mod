@@ -20,15 +20,19 @@ if (nodeVersion.major < 13) {
 //========= Create website for dashboard/uptime =========//
 ///////////////////////////////////////////////////////////
 
-const dashboard = http.createServer(function (_req, res) {
-    res.writeHead(200, "OK", { "Content-Type": "text/plain" });
-    res.write("HI! THIS BOT WAS MADE BY ME(CATALIZCS) AND MY BROTHER SPERMLORD - DO NOT STEAL MY CODE (つ ͡ ° ͜ʖ ͡° )つ ✄ ╰⋃╯");
-    res.end();
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const port = process.env.PORT || 8080;
+
+// sendFile will go here
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
-dashboard.listen(process.env.port || 0);
-
-logger("Opened server site...", "[ Starting ]");
+app.listen(port);
+console.log('[  ] Bạn Đang Chạy Bot Trên Host:  ' + port);
 
 /////////////////////////////////////////////////////////
 //========= Create start bot and make it loop =========//
